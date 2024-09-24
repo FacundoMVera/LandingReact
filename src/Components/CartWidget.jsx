@@ -1,13 +1,17 @@
-import React from 'react';
-import { FaShoppingCart } from 'react-icons/fa'; /*icono de un tiktok q vi xD */
+import React, { useContext } from 'react';
+import { CartContext } from './CartContext';  
 
-const CartWidget = ({ cartItems }) => {
+const CartWidget = () => {
+  const { cartQuantity } = useContext(CartContext);  
+
   return (
     <div className="cart-widget">
-      <FaShoppingCart size={24} />
-      <span className="cart-count">{cartItems}</span>
+      <a href="/carrito">
+        🛒 Carrito ({cartQuantity()}) {}
+      </a>
     </div>
   );
 };
 
 export default CartWidget;
+
