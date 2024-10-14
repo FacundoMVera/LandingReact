@@ -1,18 +1,46 @@
 import React from 'react';
-import NavBar from './Components/NavBar';
-import ItemListContainer from './Components/ItemListContainer';
-import Product from './Components/Product';
-import { CartProvider } from './Components/CartContext';  
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { CartProvider } from './Context/CartContext';
+import Home from './Components/Home';
+import Electronica from './Components/Electronica';
+import Moda from './Components/Moda';
+import Carrito from './Components/Carrito'; 
+import CartWidget from './Components/CartWidget';
+
+
 
 function App() {
-  const sampleProduct = { name: 'Producto de Prueba', price: 100 };
-
   return (
-    <CartProvider>  {}
-      <NavBar />
-      <ItemListContainer mensajeBienvenida="¡Bienvenido a nuestra tienda!" />
-      {}
-      <Product product={sampleProduct} />
+    <CartProvider>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/electronica">Electrónica</Link>
+              </li>
+              <li>
+                <Link to="/moda">Moda</Link>
+              </li>
+              <li>
+                <Link to="/carrito">
+                  <CartWidget /> {}
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/electronica" element={<Electronica />} />
+            <Route path="/moda" element={<Moda />} />
+            <Route path="/carrito" element={<Carrito />} /> {}
+          </Routes>
+        </div>
+      </Router>
     </CartProvider>
   );
 }
