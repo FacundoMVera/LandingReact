@@ -1,16 +1,19 @@
+// src/main.jsx
+
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
+import ReactDOM from 'react-dom/client';
 import App from './App';
-import { CartProvider } from './Context/CartContext';
+import { CartProvider } from './Context/CartContext'; 
+import './app.css'; 
 
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 root.render(
-  <CartProvider>
-    <App />
-  </CartProvider>
+  <React.StrictMode>
+    <CartProvider>
+      <App />
+    </CartProvider>
+  </React.StrictMode>
 );

@@ -1,45 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CartProvider } from './Context/CartContext';
-import Home from './Components/Home';
-import Electronica from './Components/Electronica';
-import Moda from './Components/Moda';
-import Carrito from './Components/Carrito'; 
-import CartWidget from './Components/CartWidget';
-
-
+import Header from './Components/Header';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import AuthPage from './Pages/AuthPage';
+import './App.css';
+import './CartPage.css';  
+import './HomePage.css'; 
 
 function App() {
   return (
     <CartProvider>
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/electronica">Electrónica</Link>
-              </li>
-              <li>
-                <Link to="/moda">Moda</Link>
-              </li>
-              <li>
-                <Link to="/carrito">
-                  <CartWidget /> {}
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/electronica" element={<Electronica />} />
-            <Route path="/moda" element={<Moda />} />
-            <Route path="/carrito" element={<Carrito />} /> {}
-          </Routes>
-        </div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+        </Routes>
       </Router>
     </CartProvider>
   );
